@@ -4,50 +4,25 @@ This repository contains the end-to-end implementation of a Text Emotion Detecto
 ## Overview
 The Text Emotion Detector classifies input text into six predefined emotion categories: anger, fear, joy, love, sadness, and surprise. The project follows modern development practices, incorporating Continuous Integration/Continuous Deployment (CI/CD) pipelines and cloud deployment.
 
-## Project Structure
-Model: Built using BERT for natural language processing.
+## Features
 
-Frontend: Streamlit app providing a simple UI for users to input text and receive emotion predictions.
+- **Emotion Detection**: Accurately predicts emotions from text inputs.
+- **Streamlit UI**: A user-friendly interface for inputting text and viewing predictions.
+- **Dockerized Deployment**: Fully containerized using Docker for easy deployment.
+- **CI/CD Pipeline**: Integrated Jenkins pipeline for continuous integration and deployment.
+- **AWS Deployment**: Deployed on an AWS EC2 instance for scalable cloud access.
 
-Deployment: Dockerized application deployed on AWS EC2.
+## Dataset
 
-CI/CD: Jenkins pipeline for automated testing, building, and deployment.
-## Key Components
-### 1. Model
-Dataset: https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp?select=train.txt
+The model was trained on the [Emotions Dataset for NLP](https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp?select=train.txt) available on Kaggle. The dataset includes 16,000 training samples, 2,000 validation samples, and 2,000 test samples, with the following emotion labels:
+- Anger
+- Fear
+- Joy
+- Love
+- Sadness
+- Surprise
 
-Training: Fine-tuned BERT model.
-
-Saved Model: bert_emotion_model.pth.
-### 2. Streamlit Application
-Interface: Simple input box for users to input text.
-
-Output: Displays the detected emotion and its probability.
-### 3. Docker
-Dockerfile: Contains all necessary steps to containerize the Streamlit app.
-
-Docker Hub: The Docker image is hosted on Docker Hub at bapurolling/end-to-end.
-### 4. Jenkins Pipeline
-Trigger: Automatically triggered on every push to the GitHub repository.
-
-Steps:
-Pull the latest Docker image.
-
-Stop the existing container if running.
-
-Run a new container with the updated image.
-### 5. AWS Deployment
-Instance: EC2 instance in the 'Asia Pacific (Mumbai)' region.
-
-Access: The app runs on port 8501.
-## Getting Started
-### Prerequisites
-Docker
-
-Jenkins
-
-AWS account
-### Steps
+### Steps to Run the Project
 #### Clone the repository:
 ```bash
 git clone https://github.com/Bapurolling/Text_Emotion_Detector.git
@@ -88,8 +63,11 @@ Here are some screenshots of the Text Emotion Detector application:
 ![Prediction Result](screenshots/ui_prediction.png)
 
 
-## Jenkins CI/CD Pipeline
-The Jenkins pipeline is configured to automatically build, test, and deploy the application on every push to the GitHub repository.
+## CI/CD Pipeline
+The project includes a Jenkins pipeline that automatically pulls the latest Docker image from Docker Hub, stops any running container, and deploys the new one. The pipeline is triggered by any push to the GitHub repository.
 
-## AWS Deployment
-The application is deployed on an AWS EC2 instance. Follow the steps in the Jenkins pipeline to automatically deploy the latest version of the app.
+## Deployment on AWS
+The project is deployed on an AWS EC2 instance to provide scalable and reliable access to the application.
+
+## Conclusion
+This project demonstrates an end-to-end machine learning application, including data preparation, model training, Dockerization, and CI/CD deployment. It's a comprehensive solution for detecting emotions from text inputs, with an easy-to-use web interface.
