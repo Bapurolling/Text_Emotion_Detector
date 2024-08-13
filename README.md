@@ -6,33 +6,46 @@ The Text Emotion Detector classifies input text into six predefined emotion cate
 
 ## Project Structure
 Model: Built using BERT for natural language processing.
+
 Frontend: Streamlit app providing a simple UI for users to input text and receive emotion predictions.
+
 Deployment: Dockerized application deployed on AWS EC2.
+
 CI/CD: Jenkins pipeline for automated testing, building, and deployment.
 ## Key Components
 ### 1. Model
 Dataset: https://www.kaggle.com/datasets/praveengovi/emotions-dataset-for-nlp?select=train.txt
+
 Training: Fine-tuned BERT model.
+
 Saved Model: bert_emotion_model.pth.
 ### 2. Streamlit Application
 Interface: Simple input box for users to input text.
+
 Output: Displays the detected emotion and its probability.
 ### 3. Docker
 Dockerfile: Contains all necessary steps to containerize the Streamlit app.
+
 Docker Hub: The Docker image is hosted on Docker Hub at bapurolling/end-to-end.
 ### 4. Jenkins Pipeline
 Trigger: Automatically triggered on every push to the GitHub repository.
+
 Steps:
 Pull the latest Docker image.
+
 Stop the existing container if running.
+
 Run a new container with the updated image.
 ### 5. AWS Deployment
 Instance: EC2 instance in the 'Asia Pacific (Mumbai)' region.
+
 Access: The app runs on port 8501.
 ## Getting Started
 ### Prerequisites
 Docker
+
 Jenkins
+
 AWS account
 ### Steps
 #### Clone the repository:
