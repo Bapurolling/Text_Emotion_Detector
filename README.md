@@ -73,4 +73,4 @@ The project is deployed on an AWS EC2 instance to provide scalable and reliable 
 This project demonstrates an end-to-end machine learning application, including data preparation, model training, Dockerization, and CI/CD deployment. It's a comprehensive solution for detecting emotions from text inputs, with an easy-to-use web interface.
 
 📄 License
-This project is licensed under the MIT License - see the![LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
