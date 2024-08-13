@@ -59,6 +59,8 @@ cd Text_Emotion_Detector
 docker build -t text_emotion_detector .
 docker run -p 8501:8501 text_emotion_detector
 ```
+#### Access the App:
+Open a browser and go to http://localhost:8501 to access the Streamlit app.
 ### Alternate Way: Directly Pull the Docker Image from Docker Hub
 You can skip the above steps and directly pull and run the pre-built Docker image from Docker Hub:
 
@@ -73,7 +75,7 @@ docker pull bapurolling/end-to-end:latest
 
 docker run -p 8501:8501 bapurolling/end-to-end:latest
 ```
-#### Access the Application
+#### Access the App
 Open your web browser and go to http://localhost:8501 to use the Text Emotion Detector.
 ## User Interface
 
@@ -84,8 +86,7 @@ Here are some screenshots of the Text Emotion Detector application:
 
 ### Prediction Result
 ![Prediction Result](screenshots/ui_prediction.png)
-#### Access the App:
-Open a browser and go to http://localhost:8501 to access the Streamlit app.
+
 
 ## Jenkins CI/CD Pipeline
 The Jenkins pipeline is configured to automatically build, test, and deploy the application on every push to the GitHub repository.
