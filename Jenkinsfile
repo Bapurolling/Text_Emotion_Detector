@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = 'bapurolling/end-to-end'
+        IMAGE_TAG = "${env.BUILD_ID}" 
+        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials' 
     }
 
     triggers {
@@ -10,11 +12,33 @@ pipeline {
     }
 
     stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build the Docker image from the Dockerfile
+                    sh "docker build -t ${DOCKER_HUB_REPO}:${IMAGE_TAG} ."
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    // Log in to Docker Hub
+                    withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin"
+                    }
+                    // Push the image to Docker Hub
+                    sh "docker push ${DOCKER_HUB_REPO}:${IMAGE_TAG}"
+                }
+            }
+        }
+
         stage('Pull Docker Image') {
             steps {
                 script {
                     // Pull the latest Docker image from Docker Hub
-                    sh 'docker pull ${DOCKER_HUB_REPO}:latest'
+                    sh "docker pull ${DOCKER_HUB_REPO}:${IMAGE_TAG}"
                 }
             }
         }
@@ -37,7 +61,7 @@ pipeline {
             steps {
                 script {
                     // Run the new container from the pulled image
-                    sh 'docker run -d -p 8501:8501 --name text_emotion_detector ${DOCKER_HUB_REPO}:latest'
+                    sh "docker run -d -p 8501:8501 --name text_emotion_detector ${DOCKER_HUB_REPO}:${IMAGE_TAG}"
                 }
             }
         }
