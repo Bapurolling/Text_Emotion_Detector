@@ -109,7 +109,4 @@ if st.button("Predict Emotion"):
     else:
         st.warning("Please enter a sentence!")
 
-# Additional UI elements
-st.sidebar.header("About")
-st.sidebar.text("This app predicts emotions from text using a BERT model.")
-st.sidebar.text("Built with Streamlit.")
+
