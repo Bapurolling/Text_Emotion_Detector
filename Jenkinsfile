@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_REPO = 'bapurolling/end-to-end'
         IMAGE_TAG = "${env.BUILD_ID}" 
-        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials' 
+        DOCKER_HUB_CREDENTIALS = 'dockerhub_credentials' 
     }
 
     triggers {
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     // Log in to Docker Hub
-                    withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin"
                     }
                     // Push the image to Docker Hub
