@@ -5,7 +5,6 @@ pipeline {
         DOCKER_HUB_REPO = 'bapurolling/end-to-end'
         IMAGE_TAG = "${env.BUILD_ID}" 
         DOCKER_HUB_CREDENTIALS = 'dockerhub_credentials' 
-        GIT_REPO = 'https://github.com/Bapurolling/Text_Emotion_Detector.git'
     }
 
     triggers {
@@ -13,32 +12,6 @@ pipeline {
     }
 
     stages {
-        stage('Install Git LFS') {
-            steps {
-                script {
-                    // Install Git LFS
-                    sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y git-lfs
-                    git lfs install
-                    '''
-                }
-            }
-        }
-
-        stage('Clone Repository') {
-            steps {
-                script {
-                    // Clone the repository with Git LFS support
-                    sh '''
-                    git clone ${GIT_REPO}
-                    cd Text_Emotion_Detector
-                    git lfs pull
-                    '''
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
